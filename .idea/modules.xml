@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Mantenimiento_Practica2.iml" filepath="$PROJECT_DIR$/.idea/Mantenimiento_Practica2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/junit5-mps-uma.iml" filepath="$PROJECT_DIR$/junit5-mps-uma.iml" />
     </modules>
   </component>
 </project>
