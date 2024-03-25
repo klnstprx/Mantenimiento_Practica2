@@ -8,6 +8,7 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
 
     public DoubleLinkedList() {
         // TODO
+
     }
 
     @Override
