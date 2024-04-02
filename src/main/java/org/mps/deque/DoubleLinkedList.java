@@ -1,5 +1,7 @@
 package org.mps.deque;
 
+import java.util.Comparator;
+
 public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
 
     private LinkedNode<T> first;
@@ -83,5 +85,86 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new DoubleLinkedQueueException("Index out of bounds");
+        }
+
+        LinkedNode<T> current = first;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+
+        return current.getItem();
+    }
+
+    @Override
+    public boolean contains(T value) {
+        LinkedNode<T> current = first;
+
+        while (current != null) {
+            if (current.getItem().equals(value)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+
+        return false;
+    }
+
+    @Override
+    public void remove(T value) {
+        LinkedNode<T> current = first;
+
+        while (current != null) {
+            if (current.getItem().equals(value)) {
+                if (current == first) {
+                    first = current.getNext();
+                    if (first == null) {
+                        last = null;
+                    } else {
+                        first.setPrevious(null);
+                    }
+                } else if (current == last) {
+                    last = current.getPrevious();
+                    if (last == null) {
+                        first = null;
+                    } else {
+                        last.setNext(null);
+                    }
+                } else {
+                    current.getPrevious().setNext(current.getNext());
+                    current.getNext().setPrevious(current.getPrevious());
+                }
+                size--;
+                return;
+            }
+
+            current = current.getNext();
+        }
+    }
+
+    @Override
+    public void sort(Comparator<? super T> comparator) {
+        if (size < 2) {
+            return;
+        }
+
+        LinkedNode<T> current = first;
+        while (current != null) {
+            LinkedNode<T> next = current.getNext();
+            while (next != null) {
+                if (comparator.compare(current.getItem(), next.getItem()) > 0) {
+                    T temp = current.getItem();
+                    current.setItem(next.getItem());
+                    next.setItem(temp);
+                }
+                next = next.getNext();
+            }
+            current = current.getNext();
+        }
     }
 }
