@@ -19,7 +19,6 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
             first = newNode;
             last = newNode;
         } else {
-            newNode.setNext(first);
             first.setPrevious(newNode);
             first = newNode;
         }
@@ -33,7 +32,6 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
             first = newNode;
             last = newNode;
         } else {
-            newNode.setPrevious(last);
             last.setNext(newNode);
             last = newNode;
         }
