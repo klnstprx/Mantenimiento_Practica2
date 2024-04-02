@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DoubleLinkedListTest {
@@ -470,6 +472,32 @@ public class DoubleLinkedListTest {
         void removeNonPresentElement() {
             list.remove("NonPresent");
             assertEquals(3, list.size(), "List size should remain unchanged.");
+        }
+
+        @Test
+        @DisplayName("Checking if the list contains an element")
+        void containsElement() {
+            assertTrue(list.contains("First"), "List should contain 'First'.");
+            assertTrue(list.contains("Second"), "List should contain 'Second'.");
+            assertTrue(list.contains("Third"), "List should contain 'Third'.");
+            assertFalse(list.contains("NotPresent"), "List should not contain 'NotPresent'.");
+        }
+
+        @Test
+        @DisplayName("Checking if the list contains an element after removing it")
+        void containsElementAfterRemoval() {
+            list.remove("Second");
+            assertFalse(list.contains("Second"), "List should not contain 'Second' after removal.");
+        }
+
+        @Test
+        @DisplayName("Sorting the list")
+        void sortList() {
+            Comparator<String> comparator = Comparator.naturalOrder();
+            list.sort(comparator);
+            assertEquals("First", list.get(0), "First element should be 'First'.");
+            assertEquals("Second", list.get(1), "Second element should be 'Second'.");
+            assertEquals("Third", list.get(2), "Third element should be 'Third'.");
         }
     }
 
