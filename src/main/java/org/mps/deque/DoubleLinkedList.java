@@ -126,14 +126,12 @@ public class DoubleLinkedList<T> implements DoubleLinkedQueue<T> {
                     } else {
                         first.setPrevious(null);
                     }
-                } else if (current == last) {
+                }
+                else if (current == last) {
                     last = current.getPrevious();
-                    if (last == null) {
-                        first = null;
-                    } else {
-                        last.setNext(null);
-                    }
-                } else {
+                    last.setNext(null);
+                }
+                else {
                     current.getPrevious().setNext(current.getNext());
                     current.getNext().setPrevious(current.getPrevious());
                 }

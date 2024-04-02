@@ -1,14 +1,13 @@
 package org.mps.deque;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DoubleLinkedListTest {
     DoubleLinkedList<Object> list;
-    Object item;
 
     @Test
     @DisplayName("is instantiated with new DoubleLinkedList()")
@@ -48,11 +47,15 @@ public class DoubleLinkedListTest {
         @Nested
         @DisplayName("after appending an element")
         class AfterAppending {
+            static Object item;
+            @BeforeAll
+            static void setUp() {
+                item = new Object();
+            }
 
             @Test
             @DisplayName("size is one")
             void sizeIsOne() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.append(item);
 
@@ -64,7 +67,6 @@ public class DoubleLinkedListTest {
             @Test
             @DisplayName("first is not null")
             void firstIsNotNull() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.append(item);
 
@@ -75,7 +77,6 @@ public class DoubleLinkedListTest {
             @Test
             @DisplayName("last is not null")
             void lastIsNotNull() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.append(item);
 
@@ -89,7 +90,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("size is zero")
                 void sizeIsZero() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -100,7 +100,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("first is null")
                 void firstIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -112,7 +111,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("last is null")
                 void lastIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -123,8 +121,7 @@ public class DoubleLinkedListTest {
 
                 @Test
                 @DisplayName("can't delete last")
-                void canNotDeleteLast() {
-                    item = new Object();
+                void cannotDeleteLast() {
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -134,8 +131,7 @@ public class DoubleLinkedListTest {
 
                 @Test
                 @DisplayName("can't delete first")
-                void canNotDeleteFirst() {
-                    item = new Object();
+                void cannotDeleteFirst() {
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -150,7 +146,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("size is zero")
                 void sizeIsZero() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -163,7 +158,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("first is null")
                 void firstIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -175,7 +169,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("last is null")
                 void lastIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -189,11 +182,16 @@ public class DoubleLinkedListTest {
         @Nested
         @DisplayName("after prepending an element")
         class AfterPrepending {
+            static Object item;
+            @BeforeAll
+            static void setUp() {
+                item = new Object();
+            }
+
 
             @Test
             @DisplayName("size is one")
             void sizeIsOne() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.prepend(item);
 
@@ -205,7 +203,6 @@ public class DoubleLinkedListTest {
             @Test
             @DisplayName("first is not null")
             void firstIsNotNull() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.prepend(item);
 
@@ -218,7 +215,6 @@ public class DoubleLinkedListTest {
             @Test
             @DisplayName("last is not null")
             void lastIsNotNull() {
-                item = new Object();
                 list = new DoubleLinkedList<>();
                 list.prepend(item);
 
@@ -234,7 +230,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("size is zero")
                 void sizeIsZero() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -247,7 +242,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("first is null")
                 void firstIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -259,7 +253,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("last is null")
                 void lastIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -271,7 +264,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("can't delete last")
                 void cannotDeleteLast() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -282,7 +274,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("can't delete first")
                 void cannotDeleteFirst() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -296,7 +287,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("size is zero")
                 void sizeIsZero() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -309,7 +299,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("first is null")
                 void firstIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -321,7 +310,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("last is null")
                 void lastIsNull() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteLast();
@@ -333,7 +321,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("can't delete last")
                 void cannotDeleteLast() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -344,7 +331,6 @@ public class DoubleLinkedListTest {
                 @Test
                 @DisplayName("can't delete first")
                 void cannotDeleteFirst() {
-                    item = new Object();
                     list = new DoubleLinkedList<>();
                     list.append(item);
                     list.deleteFirst();
@@ -414,5 +400,89 @@ public class DoubleLinkedListTest {
 
         assertEquals(1, list.size());
         assertEquals(firstItem, list.last());
+    }
+
+    @Nested
+    @DisplayName("when list has many elements")
+    class WhenListHasManyElements {
+        DoubleLinkedList<String> list;
+        @BeforeEach
+        void setUp() {
+            list = new DoubleLinkedList<>();
+            list.append("First");
+            list.append("Second");
+            list.append("Third");
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {0, 1, 2})
+        @DisplayName("getting the n-th element successfully")
+        void gettingNthElementSuccessfully(int n) {
+            assertDoesNotThrow(() -> {
+                Object retrievedItem = list.get(n);
+                assertNotNull(retrievedItem, "Retrieved item should not be null.");
+            });
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {-1, 4})
+        @DisplayName("getting element at invalid index throws exception")
+        void gettingElementAtInvalidIndexThrowsException(int index) {
+            DoubleLinkedQueueException exception = assertThrows(DoubleLinkedQueueException.class, () -> list.get(index),
+                    "Expected get(" + index + ") to throw, but it didn't.");
+            assertTrue(exception.getMessage().contains("Index out of bounds"), "Exception message should indicate 'Index out of bounds'.");
+        }
+
+        @Test
+        @DisplayName("Removing from an empty list does nothing")
+        void removeFromEmptyList() {
+            DoubleLinkedList<String> emptyList = new DoubleLinkedList<>();
+            assertDoesNotThrow(() -> emptyList.remove("NotPresent"));
+            assertEquals(0, emptyList.size(), "List size should remain 0.");
+        }
+
+        @Test
+        @DisplayName("Removing the first element from the list")
+        void removeFirstElement() {
+            list.remove("First");
+            assertEquals(2, list.size(), "List size should decrease to 2.");
+            assertEquals("Second", list.first(), "First element should now be 'Second'.");
+        }
+
+        @Test
+        @DisplayName("Removing the last element from the list")
+        void removeLastElement() {
+            list.remove("Third");
+            assertEquals(2, list.size(), "List size should decrease to 2.");
+            assertEquals("Second", list.last(), "Last element should now be 'Second'.");
+        }
+
+        @Test
+        @DisplayName("Removing a middle element from the list")
+        void removeMiddleElement() {
+            list.remove("Second");
+            assertEquals(2, list.size(), "List size should decrease to 2.");
+            assertEquals("Third", list.get(1), "Second element should now be 'Third'.");
+        }
+
+        @Test
+        @DisplayName("Attempting to remove a non-present element does nothing")
+        void removeNonPresentElement() {
+            list.remove("NonPresent");
+            assertEquals(3, list.size(), "List size should remain unchanged.");
+        }
+    }
+
+    @Test
+    @DisplayName("Removing the only element sets first and last to null")
+    void removeOnlyElement() {
+        DoubleLinkedList<String> singleElementList = new DoubleLinkedList<>();
+        singleElementList.append("OnlyElement");
+
+        singleElementList.remove("OnlyElement");
+
+        assertNull(singleElementList.first(), "First should be null after removing the only element.");
+        assertNull(singleElementList.last(), "Last should be null after removing the only element.");
+        assertEquals(0, singleElementList.size(), "List size should be 0.");
     }
 }
