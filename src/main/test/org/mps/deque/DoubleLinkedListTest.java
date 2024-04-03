@@ -414,6 +414,7 @@ public class DoubleLinkedListTest {
             list.append("First");
             list.append("Second");
             list.append("Third");
+            list.append("Another");
         }
 
         @ParameterizedTest
@@ -495,9 +496,10 @@ public class DoubleLinkedListTest {
         void sortList() {
             Comparator<String> comparator = Comparator.naturalOrder();
             list.sort(comparator);
-            assertEquals("First", list.get(0), "First element should be 'First'.");
-            assertEquals("Second", list.get(1), "Second element should be 'Second'.");
-            assertEquals("Third", list.get(2), "Third element should be 'Third'.");
+            assertEquals("Another", list.get(0), "First element should be 'Another'.");
+            assertEquals("First", list.get(1), "Second element should be 'First'.");
+            assertEquals("Second", list.get(2), "Third element should be 'Second'.");
+            assertEquals("Third", list.get(3), "Fourth element should be 'Third'.");
         }
     }
 
@@ -512,5 +514,18 @@ public class DoubleLinkedListTest {
         assertNull(singleElementList.first(), "First should be null after removing the only element.");
         assertNull(singleElementList.last(), "Last should be null after removing the only element.");
         assertEquals(0, singleElementList.size(), "List size should be 0.");
+    }
+
+    @Test
+    @DisplayName("Sort the only element does nothing")
+    void sortOnlyElement() {
+        DoubleLinkedList<String> singleElementList = new DoubleLinkedList<>();
+        singleElementList.append("OnlyElement");
+
+        singleElementList.sort(Comparator.naturalOrder());
+
+        assertEquals("OnlyElement", singleElementList.first(), "First should be OnlyElement.");
+        assertEquals("OnlyElement", singleElementList.last(), "Last should be OnlyElement.");
+        assertEquals(1, singleElementList.size(), "List size should be 1.");
     }
 }
