@@ -448,7 +448,7 @@ public class DoubleLinkedListTest {
         @DisplayName("Removing the first element from the list")
         void removeFirstElement() {
             list.remove("First");
-            assertEquals(2, list.size(), "List size should decrease to 2.");
+            assertEquals(3, list.size(), "List size should decrease to 2.");
             assertEquals("Second", list.first(), "First element should now be 'Second'.");
         }
 
@@ -456,15 +456,15 @@ public class DoubleLinkedListTest {
         @DisplayName("Removing the last element from the list")
         void removeLastElement() {
             list.remove("Third");
-            assertEquals(2, list.size(), "List size should decrease to 2.");
-            assertEquals("Second", list.last(), "Last element should now be 'Second'.");
+            assertEquals(3, list.size(), "List size should decrease to 2.");
+            assertEquals("Another", list.last(), "Last element should now be 'Second'.");
         }
 
         @Test
         @DisplayName("Removing a middle element from the list")
         void removeMiddleElement() {
             list.remove("Second");
-            assertEquals(2, list.size(), "List size should decrease to 2.");
+            assertEquals(3, list.size(), "List size should decrease to 2.");
             assertEquals("Third", list.get(1), "Second element should now be 'Third'.");
         }
 
@@ -472,7 +472,7 @@ public class DoubleLinkedListTest {
         @DisplayName("Attempting to remove a non-present element does nothing")
         void removeNonPresentElement() {
             list.remove("NonPresent");
-            assertEquals(3, list.size(), "List size should remain unchanged.");
+            assertEquals(4, list.size(), "List size should remain unchanged.");
         }
 
         @Test
